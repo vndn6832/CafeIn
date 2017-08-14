@@ -1,0 +1,6 @@
+<div class="sub-content">
+<h1><%=@current_lat%> , <%=@current_lon%></h1>
+ <% @shop.each do |p| %>
+    <li><a href = "/show_product/<%= p.id %>"><%= p.Name %></a></li>
+  <% end %>
+</div>

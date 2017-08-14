@@ -1,0 +1,7 @@
+<br><br>
+
+<h3>Show Favorite Cafes</h3>
+
+<% @show.each do |show| %>
+  <li><a href = '/show_product/<%= show.shop_id%>'><%= show.name %></a></li>
+<% end %>

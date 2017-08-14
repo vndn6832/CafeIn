@@ -1,0 +1,8 @@
+<div class="sub-content">
+  <h3>카페목록</h3>
+ 
+  <% @shopname.each do |p| %>
+    <li><a href = "/show_product/<%= p.id %>"><%= p.name %></a></li>
+  <% end %>
+  
+</div>

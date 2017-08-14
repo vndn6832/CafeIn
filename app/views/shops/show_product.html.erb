@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Cafe</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+  <%= stylesheet_link_tag "rating.css" %>
+
+    
+  <h3><%= @selected_shop.name %></h3> <a href = '/shops/select_shop'><h4>Return List</h4></a>
+  <h2>All Products</h2>
+  <% @products.each do |product| %>
+    <a href = '/pay/<%= product.id %>'><p><%= product.name %></p></a>
+  <% end %>
+  
+  <form action='favorites/index/<%= @selected_shop.id %>' method="get">
+    <input type="hidden" name="favorite_name" value= <%= @selected_shop.name %>>
+    <input class='button -alge center' style="width: 8%"  type="submit" value="좋아!">
+  </form><br>
+  
+  <form action='favorites/destroy/<%= @selected_shop.id %>' method="get">
+    <input class='button -alge center' style="width: 8%"  type="submit" value="싫어!">
+  </form><br>
+  
+  <h3>별점 메기기</h3>
+
+<br>
+
+  <h3>Comments are here</h3>
+  <form action = "/show_product/<%= @selected_shop.id %>/comments/create" mehtod = 'get'>
+    <fieldset class="rating">
+      <input type="radio" id="star5" name="rating" value="5" checked/><label class = "full" for="star5"></label>
+      <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4"></label>
+      <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3"></label>
+      <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2"></label>
+      <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1"></label>
+    </fieldset>
+    <input type = 'text' name = 'input_comment'>
+
+    <input type = 'submit'>
+  </form>
+
+  <hr>
+
+ <% @comments.each do |comment| %>
+    <fieldset class="rati">
+        <% for i in 1..(comment.stars) %>
+           <input type="radio" name="rati" value=j /><label class = "full"  style="color: #FFD700;"></label>
+        <% end %>
+   </fieldset>
+        <p>
+          <%= comment.content %>
+            <a href = '/show_product/<%= @selected_shop.id %>/comments/destroy' 
+            data-method = 'post' 
+            data-confirm = '댓글을 삭제합니다.'>[x]
+            </a>
+        </p>
+    <br>
+  <% end %>
+  
+</body>
+</html>
